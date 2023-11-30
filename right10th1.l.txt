@@ -1,20 +1,26 @@
 %{
 #include <stdio.h>
+#include <stdlib.h>
+int decimal_value;
 %}
 
-DIGIT [0-9]
+%%
+[0-9]* {
+    if(yyleng>=10){
+        if(yytext[yyleng-10]=='1'){
+            printf("Accepted");
+        }else {
+            printf("Not Accepted");
+        }
+    }else {
+        printf("Not accepted");
+    }
+}
 
 %%
-
-{DIGIT}{9}1   {
-               printf("Match: %s\n", yytext);
-           }
-
-.         ;  // Ignore any other characters
-
-%%
-
+int yywrap() {return 1;}
 int main() {
-    yylex();
+    printf("Enter a string: "); 
+    yylex(); 
     return 0;
 }
