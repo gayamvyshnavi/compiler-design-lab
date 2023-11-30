@@ -1,0 +1,20 @@
+%{
+#include <stdio.h>
+%}
+
+DIGIT [0-9]
+
+%%
+
+{DIGIT}{9}1   {
+               printf("Match: %s\n", yytext);
+           }
+
+.         ;  // Ignore any other characters
+
+%%
+
+int main() {
+    yylex();
+    return 0;
+}
