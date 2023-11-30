@@ -1,0 +1,8 @@
+lex program.l
+gcc -o program lex.yy.c
+.\program
+
+yacc -d -o calc.tab.c calc.y
+lex calc.l
+gcc -o calculator calc.tab.c lex.yy.c
+calculator
